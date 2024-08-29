@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador de Archivos</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <div class="contenedor bordeNegro">
+
+        <header class="title text-center">
+            <div class="CuadroColaps">
+                <h1 class="BotonColapso">Comparador de Carpetas<sup>?</sup></h1>
+
+                <p class="bordeNegro targetColaps textoOcultar">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+            </div>
+            
+            <div class="CuadroColaps">
+                <h3  class="BotonColapso" id="TitInstrucciones">
+                    <!-- <u ></u> -->
+                    Instrucciones <sup>?</sup>
+                </h3>
+    
+                <p class="bordeNegro targetColaps textoOcultar">
+                    Selecciona en la carpeta 1 aquella carpeta en la que se basara la comparacion con la segunda carpeta
+                </p>
+
+            </div>
+            
+
+        </header>
+        
+        <main class="carpetas">
+
+            <section class="Archivo flex">
+                    <button class="SelecionDirectorio bordeNegro lleno">
+                        Seleccionar Carpeta 1(Base)
+                        <div class="posicion">
+                            <div class="brillo"></div>
+                        </div>
+                    </button>
+
+                
+                
+                <p id="NumeroArchivos">Numero de Archivos:</p>
+                <textarea disabled rows="15" id=""></textarea>
+                
+            </section>
+            
+        </main>
+
+        <section>
+
+            <div class="acciones">
+                <p>Accion:</p>
+
+                <select class="accion" name="" id="">
+                    <option id="coninciden">Ver Coincidencias</option>
+                    <option id="NOconinciden">Ver Archivos Faltantes</option>
+                </select>
+            </div>
+
+            <div class="acciones">
+                <button id="ejecutar">EJECUTAR</button>
+            </div>
+
+        </section>
+
+        <!-- <section id="acciones" class="">
+            <button class="accion" id="coninciden">Ver Coincidencias</button>
+            <button class="accion" id="NOconinciden">Ver Archivos Faltantes</button>
+        </section> -->
+    </div>
+
+    <script>
+
+        
+        let dir;
+        
+        duplicarCarpeta()
+
+        //obtener el codigo de un caracter en un string
+        'abcd'.charCodeAt(2)
+
+        //
+        // r=await dir.getFileHandle('c1.png')
+        
+        function duplicarCarpeta(){
+            document.getElementsByClassName('carpetas')[0].innerHTML+= alterarCarpeta1(document.getElementsByClassName('carpetas')[0].innerHTML)
+        }
+        
+        function alterarCarpeta1(innerHTML){
+            return innerHTML.replace('1(Base)','2(CarpetaComparacion)')
+        }
+
+        function buscarHijoConClase(padre,clase){
+            console.log(padre);
+            target=padre
+
+            for(const hija of padre.children){
+                if(hija.classList.contains(clase)){
+                    return hija
+                }
+            }
+        }
+
+        async function OpenDirectorio(){
+            return await window.showDirectoryPicker();
+
+        }
+        let dirs=[];
+        async function AddDir(dir){
+            dirs.push(dir)
+        }
+
+        async function SelectDirectorio(){
+            // console.log(this);
+            try {
+                dir= await OpenDirectorio()
+                //selecciono carpeta
+                this.classList.add('lleno')
+                
+            } catch (error) {
+                //se cancelo
+            }
+
+            await AddDir(dir)
+            await buscarArchivo(null,dir)
+        }
+
+        async function buscarArchivo(archivoBuscar,dir){
+            archivos=[]
+            for await(const archivo of dir.values()){
+                archivos.push(archivo)
+                console.log(archivo.name);
+                
+            }
+        }
+
+        function getAccionName(){
+            accion=document.getElementsByClassName('accion')[0]
+            return accion.options[accion.selectedIndex].id
+        }
+
+        function searchMatches(){
+            //
+        } 
+
+        function searchDIfferences(){
+            //
+        }
+
+        for(let selector of document.getElementsByClassName('SelecionDirectorio')){
+            selector.addEventListener('click',SelectDirectorio)
+        }
+        let target;
+
+        for(let colapso of document.getElementsByClassName('BotonColapso')){
+
+            colapso.addEventListener('click',function showInstrucciones(event){
+                target=event;
+                let cuadroInst=buscarHijoConClase(event.target.parentNode,'targetColaps')
+                if(cuadroInst.checkVisibility()){
+                cuadroInst.style.display='None'
+                return
+            }
+            cuadroInst.style.display='Block'
+            })
+        }
+
+        document.getElementById('ejecutar').addEventListener('click',
+            function ejecutarAccion(event){
+
+                name=getAccionName()
+
+                console.log(name);
+                if(name=='coninciden'){
+                    searchMatches()
+                    return 
+                }
+                if(name=='NOconinciden'){
+                    searchDIfferences()
+                    return 
+                }
+
+            })
+
+        // for(let accion of document.getElementsByClassName('accion')){
+        //     accion.addEventListener('click',function ejecutarAccion(event){
+        //         this.name
+        //         if(this.name=='coninciden'){
+        //             searchMatches()
+        //             return 
+        //         }
+        //         if(this.name=='NOconinciden'){
+        //             searchDIfferences()
+        //             return 
+        //         }
+
+        //     })
+        // }
+        
+    </script>
+</body>
+</html>

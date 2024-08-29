@@ -1,0 +1,173 @@
+*{
+    margin-bottom: 10px;
+    margin-top:5px
+}
+.bordeNegro{
+    border:2px solid black;
+}
+.contenedor{
+    margin: 0px 10%;
+    background-color: gray;
+    padding-bottom: 10px;
+}
+.text-center{
+    text-align:center;
+}
+.carpetas{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.flex{
+    display: flex;
+    justify-content: center;   
+    align-items: center;
+}
+
+.accion{
+    text-align: center;
+}
+
+.acciones{
+    display:flex;
+    justify-content: center;
+    
+}
+#ejecutar{
+    border:2px solid black;
+    padding: 0px 5%;
+    margin:0px;
+}
+
+.lleno{
+    /* background-color: greenyellow; */
+    background: radial-gradient( circle at 0%,#8484ff, #21216f);
+    /* animation: moveRigth 5s ease-in-out infinite; */
+    /* transition: moveGradient 10s linear; */
+}
+.SelecionDirectorio{
+    width: 100%;
+    overflow: hidden;
+    /* transition: background-position 5s ease-in-out; */
+    /* animation: moveGradiant 5s ease-in-out infinite; */
+
+    .posicion{
+
+        /* display: none; */
+        
+        width: 100%;
+        height: 100%;
+        animation: move 5s ease-in-out infinite;
+        .brillo{
+            width: 85%;
+            height: 100%;   
+            background: radial-gradient(circle at 100% 50%, #8484ff, transparent);
+            transform: rotate(-50deg);
+            
+        }
+    }
+}
+@keyframes move{
+    0%{
+        transform: translate(-50%, -60%);
+    }
+    100%{
+        transform: translate(100%, -60%);
+    }
+}
+
+@keyframes moveGradiant{
+    0%{
+        /* background: radial-gradient( circle at 0% 50%,#8484ff, #21216f); */
+        background-position: 0% 50%;
+    }
+    100%{
+        /* background: radial-gradient( circle at 100% 50%,#8484ff, #21216f); */
+        background-position: 100% 50%;
+    }
+}
+/* #acciones{
+    display: grid;
+    grid-auto-rows: 3rem;
+
+    grid-template-columns:repeat(auto-fill, minmax(min(100%,15rem), 1fr)) ;
+    justify-items: center;
+    button{
+        margin:1%;
+        width: 90%;
+    }
+} */
+
+.Archivo{
+    width: 50% !important;
+    flex-direction: column;
+
+    button{
+        width: 90%;
+        min-height: min(8vw, 10vh );
+        margin-bottom: 10px;
+    }
+    textarea{
+        width: 85%;
+        background-color:white !important;
+    }
+}
+#TitInstrucciones{
+    color:rgb(7, 61, 95);
+    font-style: italic;
+    text-decoration: underline;
+}
+.CuadroColaps{
+    .BotonColapso{
+        padding: 0px;
+        margin-bottom: 10px;
+    }
+    .textoOcultar{
+        /* ocultarlo */
+        display: none;
+
+        /* alineacion */
+        width: 90%;
+        margin:0px 5%;
+        margin-bottom: 10px;
+
+        /* fondo */
+        background-color: white;
+        
+        /* letra */
+        font-weight: 500;
+        font-size: 16px;
+    }
+}
+#NumeroArchivos{
+    margin: 5px 0px;
+}
+.SelecionDirectorio{
+    word-wrap: break-word;
+}
+
+@media screen and (max-width:860px) {
+    .contenedor{
+        margin: 0px;
+    }   
+}
+
+@media screen and (min-width:860px) {
+    .contenedor{
+        /* margin: 0px 15vw; */
+        margin: 0px max(15vw, 30vh);
+        
+        /* margin-left:max(15vw, 50vh);
+        margin-right:max(15vw, 50vh); */
+    }   
+}
+@media screen and (min-width:1000px) {
+    .contenedor{
+        /* margin: 0px 15vw; */
+        margin: 0px 20vw;
+        
+        /* margin-left:max(15vw, 50vh);
+        margin-right:max(15vw, 50vh); */
+    }   
+}
